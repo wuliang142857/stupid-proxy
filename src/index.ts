@@ -9,9 +9,11 @@ import fecha from "fecha";
 import IResolver from "./IResolver";
 import DefaultResolver from "./DefaultResolver";
 import GithubBlobResolver from "./GithubBlobResolver";
+import RawGithubUserContentResolver from "./RawGithubUserContentResolver";
 
 const resolvers: Array<IResolver> = [
     new GithubBlobResolver(),
+    new RawGithubUserContentResolver(),
     new DefaultResolver()
 ];
 

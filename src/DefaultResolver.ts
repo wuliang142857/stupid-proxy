@@ -11,7 +11,7 @@ import Uri from "jsuri";
 const PARAM_Q:string = "q";
 
 export default class DefaultResolver implements IResolver {
-    fetch(request: Request): Promise<Response> {
+    fetch(request: Request): Response | PromiseLike<Response> {
         return fetch(request.url);
     }
 

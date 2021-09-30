@@ -8,11 +8,11 @@
 
 export default interface IResolver {
 
-    match(request: Request): boolean
+    match(request: Request): boolean;
 
     resolve(request: Request): Request;
 
-    fetch(request: Request): Promise<Response>;
+    fetch(request: Request): Response | PromiseLike<Response>;
 
     getQueryUrl(request: Request):string;
 }

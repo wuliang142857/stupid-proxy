@@ -2,8 +2,8 @@
  *
  * User: wuliang (garcia.wul@alibaba-inc.com)
  * Date: 2021/09/30
- * Time: 16:42
- * 将 https://github.com/celery/celery/blob/master/docs/django/first-steps-with-django.rst 替换成：https://cdn.jsdelivr.net/gh/celery/celery@master/docs/django/first-steps-with-django.rst
+ * Time: 17:57
+ * 类似将：https://raw.githubusercontent.com/boostorg/boost/boost-1.75.0/boostcpp.jam 替换成 https://cdn.jsdelivr.net/gh/boostorg/boost@boost-1.75.0/boostcpp.jam
  */
 import DefaultResolver from "./DefaultResolver";
 import Uri from "jsuri";
@@ -11,20 +11,16 @@ import {
     CDN_JSDELIVR_GITHUB_PREFIX,
     CDN_JSDELIVR_HOST,
     CDN_JSDELIVR_PROTOCOL,
-    GITHUB_HOST
+    RAW_GITHUB_CONTENT_HOST
 } from "./Constants";
 
-const BLOB_INDEX:number = 3;
+const BRANCH_INDEX:number = 3;
 
-export default class GithubBlobResolver extends DefaultResolver {
+export default class RawGithubUserContentResolver extends DefaultResolver {
     match(request: Request): boolean {
         const resolvedUrl:string = this.getQueryUrl(request);
         const uri:Uri = new Uri(resolvedUrl);
-        if (uri.host() !== GITHUB_HOST) {
-            return false;
-        }
-        const fields:string[] = uri.path().split("/");
-        return fields.length > (BLOB_INDEX + 1) && fields[BLOB_INDEX] == "blob";
+        return uri.host() === RAW_GITHUB_CONTENT_HOST;
     }
 
     resolve(request: Request): Request {
@@ -33,9 +29,9 @@ export default class GithubBlobResolver extends DefaultResolver {
         uri.setProtocol(CDN_JSDELIVR_PROTOCOL);
         uri.setHost(CDN_JSDELIVR_HOST);
         let fields:string[] = uri.path().split("/");
-        let branchName:string = fields[BLOB_INDEX + 1];
-        fields[BLOB_INDEX - 1] = `${fields[BLOB_INDEX - 1]}@${branchName}`;
-        fields.splice(BLOB_INDEX, 2);
+        let branchName:string = fields[BRANCH_INDEX];
+        fields[BRANCH_INDEX - 1] = `${fields[BRANCH_INDEX - 1]}@${branchName}`;
+        fields.splice(BRANCH_INDEX, 1);
         uri.setPath(`${CDN_JSDELIVR_GITHUB_PREFIX}${fields.join("/")}`);
         return new Request(uri.toString(), {});
     }
