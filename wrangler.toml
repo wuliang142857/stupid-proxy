@@ -1,0 +1,11 @@
+name = "stupid-proxy"
+type = "javascript"
+account_id = "b9920038e182e4f7f60649b0794d5914"
+workers_dev = true
+compatibility_date = "2021-09-30"
+
+[build]
+command = "yarn install && yarn run build"
+
+[build.upload]
+format = "service-worker"
