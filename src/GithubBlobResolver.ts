@@ -11,7 +11,7 @@ import {
     CDN_JSDELIVR_GITHUB_PREFIX,
     CDN_JSDELIVR_HOST,
     CDN_JSDELIVR_PROTOCOL,
-    GITHUB_HOST
+    GITHUB_HOST, RAW_GITHUB_CONTENT_HOST
 } from "./Constants";
 
 const BLOB_INDEX:number = 3;
@@ -20,7 +20,7 @@ export default class GithubBlobResolver extends DefaultResolver {
     match(request: Request): boolean {
         const resolvedUrl:string = this.getQueryUrl(request);
         const uri:Uri = new Uri(resolvedUrl);
-        if (uri.host() !== GITHUB_HOST) {
+        if (uri.host() !== RAW_GITHUB_CONTENT_HOST && uri.host() !== GITHUB_HOST) {
             return false;
         }
         const fields:string[] = uri.path().split("/");
@@ -38,6 +38,6 @@ export default class GithubBlobResolver extends DefaultResolver {
         fields[BLOB_INDEX - 1] = `${fields[BLOB_INDEX - 1]}@${branchName}`;
         fields.splice(BLOB_INDEX, 2);
         uri.setPath(`${CDN_JSDELIVR_GITHUB_PREFIX}/${fields.join("/")}`);
-        return new Request(uri.toString(), request.clone());
+        return new Request(uri.toString(), {});
     }
 }

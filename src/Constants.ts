@@ -10,3 +10,4 @@ export const CDN_JSDELIVR_HOST:string = "cdn.jsdelivr.net";
 export const CDN_JSDELIVR_GITHUB_PREFIX:string = "/gh";
 export const CDN_JSDELIVR_PROTOCOL:string = "https";
 export const GITHUB_HOST:string = "github.com";
+export const RAW_GITHUB_CONTENT_HOST:string = "raw.githubusercontent.com";
