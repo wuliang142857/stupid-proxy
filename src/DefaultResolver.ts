@@ -31,7 +31,7 @@ export default class DefaultResolver implements IResolver {
         if (uri.hasQueryParam(PARAM_Q)) {
             resolvedUrl = uri.getQueryParamValue(PARAM_Q);
         } else {
-            resolvedUrl = request.url.substring(uri.host().length + 1);
+            resolvedUrl = `${uri.path().substring(1)}${uri.query()}`;
         }
         return resolvedUrl;
     }
