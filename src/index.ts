@@ -5,9 +5,18 @@
  * Time: 15:10
  *
  */
+import IResolver from "./IResolver";
+import DefaultResolver from "./DefaultResolver";
+
+const resolvers: Array<IResolver> = [
+    new DefaultResolver()
+];
 
 async function handleRequest(request: Request): Promise<Response> {
-    return new Response(`request method`);
+    let matchedResolver:IResolver = resolvers.find((resolver: IResolver) => {
+        return resolver.match(request);
+    });
+    return matchedResolver.fetch(matchedResolver.resolve(request));
 }
 
 addEventListener("fetch", (event: FetchEvent) => {
