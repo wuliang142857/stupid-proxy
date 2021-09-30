@@ -5,7 +5,7 @@
  * Time: 15:10
  *
  */
-import signale from "signale";
+import fecha from "fecha";
 import IResolver from "./IResolver";
 import DefaultResolver from "./DefaultResolver";
 import GithubBlobResolver from "./GithubBlobResolver";
@@ -20,7 +20,7 @@ async function handleRequest(request: Request): Promise<Response> {
         return resolver.match(request);
     });
     const newRequest: Request = matchedResolver.resolve(request);
-    signale.info(`${request.url} => ${newRequest.url}`);
+    console.info(`${fecha.format(new Date(), "YYYY-MM-DD hh:mm:ss")} ${request.url} => ${newRequest.url}`);
     return matchedResolver.fetch(newRequest);
 }
 
