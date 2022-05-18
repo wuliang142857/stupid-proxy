@@ -12,7 +12,12 @@ const PARAM_Q:string = "q";
 
 export default class DefaultResolver implements IResolver {
     async fetch(request: Request): Promise<Response> {
-        const response: Response = await fetch(request.url);
+        const response: Response = await fetch(request.url, {
+            method: request.method,
+            headers: request.headers,
+            body: request.body,
+            redirect: 'manual',
+        });
         const responseHeaders: Headers = response.headers;
         const rewriteResponseHeaders  = new Headers(responseHeaders);
         rewriteResponseHeaders.set('access-control-expose-headers', '*')
