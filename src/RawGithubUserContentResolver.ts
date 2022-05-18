@@ -36,7 +36,7 @@ export default class RawGithubUserContentResolver extends DefaultResolver {
         return new Request(uri.toString(), {});
     }
 
-    fetch(request: Request): Response | PromiseLike<Response> {
+    async fetch(request: Request): Promise<Response> {
         return Response.redirect(request.url, 302);
     }
 }

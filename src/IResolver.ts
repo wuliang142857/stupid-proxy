@@ -12,7 +12,5 @@ export default interface IResolver {
 
     resolve(request: Request): Request;
 
-    fetch(request: Request): Response | PromiseLike<Response>;
-
-    getQueryUrl(request: Request):string;
+    fetch(request: Request): Promise<Response>;
 }

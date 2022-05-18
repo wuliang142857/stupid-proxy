@@ -11,8 +11,20 @@ import Uri from "jsuri";
 const PARAM_Q:string = "q";
 
 export default class DefaultResolver implements IResolver {
-    fetch(request: Request): Response | PromiseLike<Response> {
-        return fetch(request.url);
+    async fetch(request: Request): Promise<Response> {
+        const response: Response = await fetch(request.url);
+        const responseHeaders: Headers = response.headers;
+        const rewriteResponseHeaders  = new Headers(responseHeaders);
+        rewriteResponseHeaders.set('access-control-expose-headers', '*')
+        rewriteResponseHeaders.set('access-control-allow-origin', '*')
+        rewriteResponseHeaders.delete('content-security-policy')
+        rewriteResponseHeaders.delete('content-security-policy-report-only')
+        rewriteResponseHeaders.delete('clear-site-data')
+
+        return new Response(response.body, {
+            status: response.status,
+            headers: response.headers,
+        });
     }
 
     match(request: Request): boolean {

@@ -9,3 +9,4 @@ command = "yarn install && yarn run build"
 
 [build.upload]
 format = "service-worker"
+

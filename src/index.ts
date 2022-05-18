@@ -5,13 +5,15 @@
  * Time: 15:10
  *
  */
-import fecha from "fecha";
+import moment from "moment";
 import IResolver from "./IResolver";
 import DefaultResolver from "./DefaultResolver";
 import GithubBlobResolver from "./GithubBlobResolver";
 import RawGithubUserContentResolver from "./RawGithubUserContentResolver";
+import CorsOptionResolver from "./CorsOptionResolver";
 
 const resolvers: Array<IResolver> = [
+    new CorsOptionResolver(),
     new GithubBlobResolver(),
     new RawGithubUserContentResolver(),
     new DefaultResolver()
@@ -22,7 +24,7 @@ async function handleRequest(request: Request): Promise<Response> {
         return resolver.match(request);
     });
     const newRequest: Request = matchedResolver.resolve(request);
-    console.info(`${fecha.format(new Date(), "YYYY-MM-DD hh:mm:ss")} ${request.url} => ${newRequest.url}`);
+    console.info(`${moment(new Date()).format("YYYY-MM-DD hh:mm:ss")} ${request.url} => ${newRequest.url}`);
     return matchedResolver.fetch(newRequest);
 }
 
