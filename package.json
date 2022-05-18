@@ -1,7 +1,7 @@
 {
   "name": "stupid-proxy",
-  "version": "0.0.1",
-  "main": "dist/worker.js",
+  "version": "0.0.2",
+  "main": "src/index.ts",
   "repository": "git@gitlab.cy-data.com:garcia.wul/stupid-proxy.git",
   "author": "wuliang <garcia.wul@alibaba-inc.com>",
   "license": "MIT",
