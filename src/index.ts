@@ -14,8 +14,8 @@ import CorsOptionResolver from "./CorsOptionResolver";
 
 const resolvers: Array<IResolver> = [
     new CorsOptionResolver(),
-    new GithubBlobResolver(),
-    new RawGithubUserContentResolver(),
+    //new GithubBlobResolver(),
+    //new RawGithubUserContentResolver(),
     new DefaultResolver()
 ];
 
