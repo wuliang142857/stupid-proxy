@@ -16,7 +16,7 @@ export default class DefaultResolver implements IResolver {
             method: request.method,
             headers: request.headers,
             body: request.body,
-            //redirect: 'manual',
+            redirect: 'follow',
         });
         const responseHeaders: Headers = response.headers;
         const rewriteResponseHeaders  = new Headers(responseHeaders);

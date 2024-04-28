@@ -2,8 +2,8 @@
   "name": "stupid-proxy",
   "version": "0.0.2",
   "main": "src/index.ts",
-  "repository": "git@gitlab.cy-data.com:garcia.wul/stupid-proxy.git",
-  "author": "wuliang <garcia.wul@alibaba-inc.com>",
+  "repository": "https://github.com/wuliang142857/stupid-proxy.git",
+  "author": "wuliang142857 <wuliang142857@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@cloudflare/workers-types": "^2.2.2",
