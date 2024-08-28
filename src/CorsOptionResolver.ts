@@ -1,7 +1,7 @@
 // -*- coding: utf-8 -*-
 // vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 fileencoding=utf-8 ff=unix
-// author: wuliang
-// contact: garcia.wul@alibaba-inc.com
+// author: wuliang142857
+// contact: wuliang142857@gmail.com
 // date 2022/5/18 12:23:21
 
 import IResolver from "./IResolver";
